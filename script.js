@@ -6,12 +6,12 @@ function initShoppingList() {
    let form =document.getElementById("item-form");
 
    form.addEventListener("submit", (event) => {
-       handItemForm(event, form);
+       handleItemForm(event, form);
     });
 }
 
-function handleItemForm(event, formRef) {
-    if (event.preventDefault) {
+function handleItemFrom(event, formRef) {
+    if(event.preventDefault) {
         event.preventDefault();
     }
 
@@ -26,9 +26,9 @@ function addItemToShoppingList() {
     let itemAmount =  document.getElementById("item-amount");
     let id = getRandomInt(0, 10000000);
 
-    //Creates List Item html and appends to page.
+    //Creat List Item html and appends to page.
     let itemHtml = createListItemHtml(itemName.value, itemAmount.value, id);
-    console.log("Item HTML:", itemHtml);
+    console.log("Item HTML; ", itemHtml);
     let itemListRef = document.getElementById("shopping-list");
     itemListRef.insertAdjacentHTML("afterend", itemHtml);
 
@@ -43,19 +43,19 @@ function setDeleteButtonEvent(id) {
 
 }
 function createListItemHtml(itemName, itemAmount, id) {
-    return <li id="item${id}">
+    return `<li id="item${id}">
         ${itemName} - ${itemAmount}
-        <button id="button${id}>" type="button">Delete Item</button>
-            </li>;
+        <button id="button${id}" type="button">Delete Item</button>
+            </li>`;
 }
 
 function removeListItem(id) {
-    let listItem = document.getElementById("item + id");
+    let listItem = document.getElementById("item" + id);
     listItem.parentNode.removeChild(listItem);
 }
 
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min)) + min; //maximum is excuse
+    return Math.floor(Math.random() * (max - min)) + min;
 }
